@@ -5,6 +5,7 @@
   <title>My Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="mobile.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
  
 
@@ -73,32 +74,23 @@
   <div class="about-text">
     <h2>About Me</h2>
     <section class="about-section">
+    <section class="about-section">
  <p>
-    I’m a self-taught photographer and designer who loves turning ideas into visuals that feel lived-in, human, and real. 
-    My work sits somewhere between lifestyle and product — blending fashion, objects, cars, and environments into stories 
-    brands can use to communicate who they are.
+    I'm a self-taught photographer and designer creating lifestyle and product visuals that feel lived-in and real. 
+    My work blends fashion, cars, and environments into brand stories that resonate with audiences.
   </p>
 </section>
 
 <section class="about-section">
  <p>
-    I started building my portfolio on Instagram, where I quickly grew an audience through experimental projects and visual briefs. 
-    Since then, businesses and creatives have reached out to collaborate, and I’ve begun shaping my work into a freelance practice — 
-    creating imagery, brand visuals, and mockups that help products exist beyond the screen.
+    I built my audience through Instagram, growing from experimental projects to freelance work with businesses and creatives. 
+    Now I create imagery, brand visuals, and mockups that help products exist beyond the screen.
   </p></section>
 
 <section class="about-section">
 <p>
-    Outside of the studio and behind the camera, I’ve spent years working in construction and building maintenance. 
-    That background taught me how things are made, how spaces function, and how to pay attention to details that often 
-    get overlooked. It’s also led me toward building surveying, where technical problem-solving meets the physical world.
-  </p>
-</section>
-
-<section class="about-section">
-    <p>
-    Across everything I do, I’m driven by curiosity, craftsmanship, and the challenge of making things that resonate — 
-    from brand stories to buildings to photographs.
+    With a background in construction and building surveying, I bring unique attention to detail and craftsmanship to every project — 
+    driven by curiosity and the challenge of making things that truly connect.
   </p></section>
   </div>
 
@@ -120,7 +112,9 @@
       <h2>Selected Work</h2>
    
       
-      <div class="grid">
+      <div class="portfolio-slider">
+        <div class="slides-container">
+          <div class="grid">
         <!-- Replace these with your real projects/images -->
         <article class="card">
           <div class="card-img">
@@ -145,6 +139,19 @@
           <h3>Honda S2000 'Mugen'</h3>
           <p>Shot on the street as it caught my eye.</p>
         </article>
+      </div>
+        </div>
+        
+        <!-- Slide navigation controls -->
+        <button class="slide-nav prev-slide" aria-label="Previous project">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slide-nav next-slide" aria-label="Next project">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        
+        <!-- Slide indicators -->
+        <div class="slide-indicators"></div>
       </div>
     </section>
 
