@@ -5,17 +5,16 @@
   <title>My Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
  
 
 </head>
 <body>
 
-    <div class="bg-animated"></div>
+    <div class="bg-animated">
 
-  <div class="page">
-
-     <div class="container">
   <header class="site-header">
+    <div class="container">
     <div class="logo">
    <lottie-player
   src="images/icon.json"
@@ -38,22 +37,19 @@
       <a href="#work">Work</a>
       <a href="#contact">Contact</a>
     </nav>
+    </div>
   </header>
 
+  <div class="page">
 
+     <div class="container">
 
-
-
-
-
-
-  
   <main>
     <!-- Hero / Intro section -->
     <section id="home" class="hero">
       <div class="hero-text">
-        <h1>Hi, I'm Jordan</h1>
-        <p>I’m a photographer & designer creating clean visuals and bold brands.</p>
+        <h1 class="typing-text">Hi, I'm Jordan</h1>
+        <p>I'm a photographer & designer creating clean visuals and bold brands.</p>
         <a href="#work" class="btn">View My Work</a>
       </div>
     </section>
@@ -173,26 +169,26 @@
       <h2>Contact</h2>
       <p>Ready to work together? Reach out:</p>
       <ul class="contact-list">
-        <li>Email: <a href="hello@juhdun.com">hello@juhdun.com</a></li>
-        <li>Instagram: <a href="https://instagram.com/juhdun" target="_blank">@juhdun</a></li>
+        <li><i class="fas fa-envelope"></i> Email: <a href="hello@juhdun.com">hello@juhdun.com</a></li>
+        <li><i class="fab fa-instagram"></i> Instagram: <a href="https://instagram.com/juhdun" target="_blank">@juhdun</a></li>
       </ul>
       
       <div class="contact-form">
         <h3>Send me a message</h3>
-        <form action="#" method="POST" class="form">
+        <form action="https://formspree.io/f/mojzpgqy" method="POST" class="form">
           <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name"><i class="fas fa-user"></i> Name</label>
             <input type="text" id="name" name="name" required>
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email"><i class="fas fa-envelope"></i> Email</label>
             <input type="email" id="email" name="email" required>
           </div>
           <div class="form-group">
-            <label for="message">Message</label>
+            <label for="message"><i class="fas fa-comment"></i> Message</label>
             <textarea id="message" name="message" rows="5" required></textarea>
           </div>
-          <button type="submit" class="btn">Send Message</button>
+          <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
         </form>
       </div>
     </section>
