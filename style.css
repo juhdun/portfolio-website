@@ -224,6 +224,72 @@ a {
   text-decoration: underline;
 }
 
+/* Contact Form Styles */
+.contact-form {
+  margin-top: 2rem;
+  max-width: 600px;
+}
+
+.contact-form h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 0.5rem;
+  color: #f5f5f5;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #666;
+  background: #151515;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Form submit button styling */
+.contact-form .btn {
+  background: #ffffff20;
+  border: 1px solid #ffffff66;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.8rem 2rem;
+  margin-top: 0.5rem;
+}
+
+.contact-form .btn:hover {
+  background: #ffffff30;
+  border-color: #ffffff88;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
 .site-footer {
   padding: 1.5rem 5vw 2rem;
   font-size: 0.8rem;
