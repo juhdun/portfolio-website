@@ -108,6 +108,41 @@ a {
   transform: translateY(-1px);
 }
 
+/* Hamburger menu toggle — hidden on desktop, shown on mobile (see mobile.css) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #f5f5f5;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 .hero {
   min-height: 80vh;
   display: flex;
@@ -176,7 +211,7 @@ a {
 }
 
 #about h2 {
-  font-size:rem;
+  font-size: 0.9rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   opacity: 0.7;
@@ -223,110 +258,27 @@ a {
   margin-left: -100px;
   margin-right: -100px;
 }
-.grid {
+
+/* Selected Work — Instagram post embeds */
+.ig-grid {
   margin-top: 2rem;
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(326px, 1fr));
+  align-items: start;
 }
 
-.card {
-  padding: 1rem;
-  border-radius: 1rem;
-  background: #111;
-  border: 1px solid #333;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
+.ig-card {
+  display: flex;
+  justify-content: center;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-  z-index: 1;
-}
-
-.card:hover::before {
-  transform: translateX(100%);
-}
-
-.card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 
-              0 0 20px rgba(120, 119, 198, 0.3);
-  border-color: #7877c6;
-  background: linear-gradient(135deg, #111, #1a1a2e);
-}
-
-.card-img {
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.5rem;
-}
-
-.card-img img {
-  transition: transform 0.6s ease, filter 0.4s ease;
-}
-
-.card:hover .card-img img {
-  transform: scale(1.1);
-  filter: brightness(1.1) saturate(1.2);
-}
-
-.card h3 {
-  transition: color 0.3s ease, transform 0.3s ease;
-  position: relative;
-  z-index: 2;
-}
-
-.card:hover h3 {
-  color: #7877c6;
-  transform: translateX(5px);
-}
-
-.card p {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  position: relative;
-  z-index: 2;
-}
-
-.card:hover p {
-  opacity: 1;
-  transform: translateX(3px);
-}
-
-.card-img {
-  width: 100%;
-  height: 500px; /* or whatever height you like */
-  overflow: hidden;
-}
-
-.card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Temporary placeholder for images – replace with real <img> later */
-.placeholder {
-  background: linear-gradient(135deg, #333, #555);
-}
-
-.card h3 {
-  margin-bottom: 0.3rem;
-}
-
-.card p {
-  font-size: 0.9rem;
-  opacity: 0.8;
+/* Instagram's embed script renders its own card (white background, fixed
+   width) inside this blockquote — we just center it and give it room. */
+.ig-card blockquote.instagram-media {
+  margin: 0 auto !important;
+  max-width: 100% !important;
+  min-width: 300px !important;
 }
 
 .contact-list {
@@ -464,12 +416,6 @@ a {
   transform: translateY(8px);
 }
 
-
-
-portfolio-website/
-  src/
-    components/
-
 /* Small screens */
 @media (max-width: 600px) {
   .nav a {
@@ -494,15 +440,11 @@ portfolio-website/
     padding: 3rem 4vw;
   }
   
-  .grid {
+  .ig-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
-  .card {
-    margin: 0 auto;
-  }
-  
+
   .contact-form {
     max-width: 100%;
   }

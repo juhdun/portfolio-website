@@ -1,6 +1,26 @@
 /* Comprehensive Mobile Optimizations */
 
 @media (max-width: 768px) {
+  /* Prevent horizontal scrolling */
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  html {
+    overflow-x: hidden;
+  }
+  
+  .page {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  .container {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
   /* Navigation */
   .site-header {
     padding: 0.75rem 4vw;
@@ -9,13 +29,39 @@
   .logo {
     font-size: 0.8rem;
   }
-  
-  .nav {
-    gap: 1rem;
+
+  /* Hamburger toggle becomes visible on mobile */
+  .nav-toggle {
+    display: flex;
   }
-  
+
+  /* Nav collapses into a slide-out panel on mobile */
+  .nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(75vw, 300px);
+    margin: 0;
+    padding: 5.5rem 2rem 2rem;
+    background: rgba(5, 5, 5, 0.97);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  .nav.nav-open {
+    transform: translateX(0);
+  }
+
   .nav a {
-    font-size: 0.9rem;
+    margin-left: 0;
+    font-size: 1.1rem;
   }
   
   /* Hero Section */
@@ -81,135 +127,9 @@
     object-fit: cover;
   }
   
-  /* Work Section - Mobile Slide System */
-  .portfolio-slider {
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.5rem;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .slides-container {
-    display: flex;
-    transition: transform 0.3s ease;
-    will-change: transform;
-    width: 100%;
-    height: auto;
-  }
-  
-  .grid {
-    display: flex;
-    grid-template-columns: 1fr;
-    gap: 0;
-    width: 100%;
-    flex-shrink: 0;
-    min-height: 400px;
-  }
-  
-  .card {
-    flex: 0 0 100%;
-    margin: 0;
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 400px;
-  }
-  
-  .card.active {
-    opacity: 1;
-  }
-  
-  .card-img {
-    width: 100%;
-    overflow: hidden;
-    flex: 1;
-    min-height: 250px;
-  }
-  
-  .card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  
-  /* Slide Navigation */
-  .slide-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-  }
-  
-  .slide-nav:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-50%) scale(1.1);
-  }
-  
-  .slide-nav.prev-slide {
-    left: 1rem;
-  }
-  
-  .slide-nav.next-slide {
-    right: 1rem;
-  }
-  
-  /* Slide Indicators */
-  .slide-indicators {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.5rem;
-    z-index: 10;
-  }
-  
-  .slide-indicator {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .slide-indicator.active {
-    background: rgba(255, 255, 255, 0.8);
-    transform: scale(1.2);
-  }
-  
-  .card-text {
-    padding: 1rem;
-    text-align: center;
-  }
-  
-  .card-text h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .card-text p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-  
+  /* Work Section — Instagram embeds stack in a single column on mobile
+     automatically via .ig-grid's auto-fit grid, no extra rules needed. */
+
   /* Contact Section */
   .contact-list {
     text-align: center;
@@ -293,10 +213,6 @@
   }
   
   /* Disable some hover effects on mobile */
-  .card:hover {
-    transform: none;
-  }
-  
   .btn:hover {
     transform: none;
   }
@@ -309,11 +225,12 @@
   }
   
   .nav {
-    gap: 0.75rem;
+    gap: 1.25rem;
+    width: min(80vw, 280px);
   }
-  
+
   .nav a {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
   
   .hero {
@@ -339,10 +256,6 @@
   .btn {
     padding: 0.6rem 1.2rem;
     font-size: 0.85rem;
-  }
-  
-  .card img {
-    height: 180px;
   }
   
   .form-group input,

@@ -1,4 +1,56 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  // Initialize SoftAurora background
+  // Wrapped in try/catch: if the OGL CDN script is slow/blocked/fails for a
+  // visitor, this would otherwise throw and silently break every other
+  // script on the page (nav toggle, typing effect, slider, to-top button).
+  try {
+    if (window.SoftAurora) {
+      const auroraContainer = document.getElementById('soft-aurora');
+      if (auroraContainer) {
+        new SoftAurora(auroraContainer, {
+          speed: 0.6,
+          scale: 1.5,
+          brightness: 1.0,
+          color1: '#ffffff',
+          color2: '#a26ba6',
+          noiseFrequency: 2.5,
+          noiseAmplitude: 1.0,
+          bandHeight: 0.5,
+          bandSpread: 1.0,
+          octaveDecay: 0.1,
+          layerOffset: 0,
+          colorSpeed: 1.0,
+          enableMouseInteraction: true,
+          mouseInfluence: 0.25
+        });
+      }
+    }
+  } catch (err) {
+    console.warn('SoftAurora background failed to initialize:', err);
+  }
+
+  // Mobile hamburger nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const siteNav = document.getElementById('siteNav');
+
+  if (navToggle && siteNav) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('nav-open');
+      navToggle.classList.toggle('active', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close the menu whenever a nav link is tapped
+    siteNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        siteNav.classList.remove('nav-open');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   const toTopBtn = document.getElementById("toTopBtn");
   const siteHeader = document.querySelector('.site-header');
 
@@ -105,179 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const sections = document.querySelectorAll('.section');
   sections.forEach((section, index) => {
     section.classList.add(index % 2 === 0 ? 'fade-in' : 'slide-in-left');
-  });
-
-  // Add animation to portfolio cards
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card, index) => {
-    card.classList.add('fade-in');
-    card.style.transitionDelay = `${index * 0.1}s`;
-  });
-
-  // Mobile Portfolio Slider
-  function initMobileSlider() {
-    const slider = document.querySelector('.portfolio-slider');
-    if (!slider) return;
-    
-    const slidesContainer = document.querySelector('.slides-container');
-    const slides = document.querySelectorAll('.card');
-    const prevBtn = document.querySelector('.prev-slide');
-    const nextBtn = document.querySelector('.next-slide');
-    const indicatorsContainer = document.querySelector('.slide-indicators');
-    
-    if (!slidesContainer || slides.length === 0) return;
-    
-    let currentSlide = 0;
-    let isDragging = false;
-    let startX = 0;
-    let currentX = 0;
-    
-    // Clear existing indicators and create new ones
-    indicatorsContainer.innerHTML = '';
-    
-    // Create indicators for each portfolio card
-    const portfolioCards = document.querySelectorAll('.portfolio-slider .card');
-    portfolioCards.forEach((_, index) => {
-      const indicator = document.createElement('div');
-      indicator.classList.add('slide-indicator');
-      if (index === 0) indicator.classList.add('active');
-      indicator.addEventListener('click', () => goToSlide(index));
-      indicatorsContainer.appendChild(indicator);
-    });
-    
-    const indicators = document.querySelectorAll('.slide-indicator');
-    
-    function updateSlider() {
-      // Update slide position
-      slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-      
-      // Update active states
-      slides.forEach((slide, index) => {
-        slide.classList.toggle('active', index === currentSlide);
-      });
-      
-      indicators.forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === currentSlide);
-      });
-    }
-    
-    function goToSlide(slideIndex) {
-      currentSlide = slideIndex;
-      updateSlider();
-    }
-    
-    function nextSlide() {
-      const portfolioCards = document.querySelectorAll('.portfolio-slider .card');
-      currentSlide = (currentSlide + 1) % portfolioCards.length;
-      updateSlider();
-    }
-    
-    function prevSlide() {
-      const portfolioCards = document.querySelectorAll('.portfolio-slider .card');
-      currentSlide = (currentSlide - 1 + portfolioCards.length) % portfolioCards.length;
-      updateSlider();
-    }
-    
-    // Button navigation
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-    
-    // Touch/swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    slidesContainer.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-    
-    slidesContainer.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
-    
-    function handleSwipe() {
-      const swipeThreshold = 50;
-      const diff = touchStartX - touchEndX;
-      
-      if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-          nextSlide(); // Swipe left, go next
-        } else {
-          prevSlide(); // Swipe right, go prev
-        }
-      }
-    }
-    
-    // Mouse drag support
-    slidesContainer.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startX = e.pageX;
-      slidesContainer.style.cursor = 'grabbing';
-      e.preventDefault();
-    });
-    
-    document.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      currentX = e.pageX;
-      const diff = currentX - startX;
-      slidesContainer.style.transform = `translateX(calc(-${currentSlide * 100}% + ${diff}px))`;
-    });
-    
-    document.addEventListener('mouseup', (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-      slidesContainer.style.cursor = 'grab';
-      
-      const diff = currentX - startX;
-      const threshold = slidesContainer.offsetWidth / 4;
-      
-      if (Math.abs(diff) > threshold) {
-        if (diff > 0) {
-          prevSlide();
-        } else {
-          nextSlide();
-        }
-      } else {
-        updateSlider(); // Snap back to current slide
-      }
-    });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') prevSlide();
-      if (e.key === 'ArrowRight') nextSlide();
-    });
-    
-    // Auto-play (optional)
-    let autoPlayInterval;
-    
-    function startAutoPlay() {
-      autoPlayInterval = setInterval(nextSlide, 5000);
-    }
-    
-    function stopAutoPlay() {
-      clearInterval(autoPlayInterval);
-    }
-    
-    // Start auto-play on hover
-    slider.addEventListener('mouseenter', stopAutoPlay);
-    slider.addEventListener('mouseleave', startAutoPlay);
-    
-    // Initialize
-    updateSlider();
-    startAutoPlay();
-  }
-  
-  // Only initialize slider on mobile
-  if (window.innerWidth <= 768) {
-    initMobileSlider();
-  }
-  
-  // Handle window resize
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768) {
-      initMobileSlider();
-    }
   });
 
   });

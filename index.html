@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>My Portfolio</title>
+  <title>Juhdun | Photography &amp; Visuals</title>
+  <meta name="description" content="Juhdun (Jordan Liu) — photography and visuals for cars, brands, and products, based in Newcastle upon Tyne." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="mobile.css" />
+  <link rel="stylesheet" href="softaurora.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
- 
+  <script src="https://cdn.jsdelivr.net/npm/ogl@1.0.0/dist/ogl.min.js"></script>
+  <script src="softaurora.js"></script>
 
 </head>
 <body>
+
+    <!-- SoftAurora Background -->
+    <div class="soft-aurora-container" id="soft-aurora"></div>
 
     <div class="bg-animated">
 
@@ -28,10 +34,12 @@
 </lottie-player>
 
 </div>
-   
 
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="siteNav">
+  <span></span><span></span><span></span>
+</button>
 
-<nav class="nav">
+<nav class="nav" id="siteNav">
     <a href="#home" class="logo">Juhdun</a>
       <a href="#home">Home</a>
       <a href="#about">About</a>
@@ -74,7 +82,6 @@
   <div class="about-text">
     <h2>About Me</h2>
     <section class="about-section">
-    <section class="about-section">
  <p>
     I'm a self-taught photographer and designer creating lifestyle and product visuals that feel lived-in and real. 
     My work blends fashion, cars, and environments into brand stories that resonate with audiences.
@@ -106,57 +113,22 @@
 
 
 <section id="work" class="section work">
-
-    <!-- Work / Portfolio section -->
-    <section id="work" class="section">
       <h2>Selected Work</h2>
-   
-      
-      <div class="portfolio-slider">
-        <div class="slides-container">
-          <div class="grid">
-        <!-- Replace these with your real projects/images -->
-        <article class="card">
-          <div class="card-img">
-  <img src="images/992.png" alt="Project 1">
-</div>
-          <h3>Porsche 911 992 Turbo S</h3>
-          <p>Strolling around town and this had caught my eye</p>
-        </article>
 
-        <article class="card">
-          <div class="card-img">
-  <img src="images/gryaris.png" alt="Project 1">
-</div>
-          <h3>Toyota GR Yaris</h3>
-          <p>Saw it parked whilst at work and decided to visit after i had finished work</p>
-        </article>
-
-        <article class="card">
-          <div class="card-img">
-  <img src="images/mugen.png" alt="Project 1">
-</div>
-          <h3>Honda S2000 'Mugen'</h3>
-          <p>Shot on the street as it caught my eye.</p>
-        </article>
-      </div>
+      <div class="ig-grid">
+        <div class="ig-card">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DPbqMarDJnQ/" data-instgrm-version="14"></blockquote>
         </div>
-        
-        <!-- Slide navigation controls -->
-        <button class="slide-nav prev-slide" aria-label="Previous project">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="slide-nav next-slide" aria-label="Next project">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-        
-        <!-- Slide indicators -->
-        <div class="slide-indicators"></div>
+
+        <div class="ig-card">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DcVx01Ujg0u/" data-instgrm-version="14"></blockquote>
+        </div>
+
+        <div class="ig-card">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbfSI2UDZEl/" data-instgrm-version="14"></blockquote>
+        </div>
       </div>
     </section>
-
-
-</section>
 
 
 
@@ -224,9 +196,12 @@
 
   <script src="script.js"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <!-- Instagram's official embed loader — renders the .instagram-media blockquotes in Selected Work -->
+  <script async src="https://www.instagram.com/embed.js"></script>
 
   </div>
 
+  </div><!-- closes .bg-animated (opened near top of body) -->
 
   <button id="toTopBtn" class="to-top-btn">▲</button>
 
