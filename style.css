@@ -259,18 +259,27 @@ a {
   margin-right: -100px;
 }
 
-/* Selected Work — Instagram post embeds */
+/* Selected Work — Instagram post embeds.
+   A horizontal row, not a wrapping grid: this way the three posts always
+   sit side by side. On screens too narrow to fit all three, the row
+   scrolls sideways instead of stacking into a column. */
 .ig-grid {
   margin-top: 2rem;
-  display: grid;
+  display: flex;
+  flex-wrap: nowrap;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(326px, 1fr));
-  align-items: start;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
 }
 
 .ig-card {
+  flex: 0 0 auto;
+  width: min(360px, 85vw);
   display: flex;
   justify-content: center;
+  scroll-snap-align: start;
 }
 
 /* Instagram's embed script renders its own card (white background, fixed
@@ -440,9 +449,8 @@ a {
     padding: 3rem 4vw;
   }
   
-  .ig-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .ig-card {
+    width: min(320px, 88vw);
   }
 
   .contact-form {
